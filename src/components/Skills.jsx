@@ -27,19 +27,19 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="bg-[#0D1117] text-white py-24 px-8"
+      className="bg-[#0D1117] text-white py-20 px-4 sm:px-6 md:px-8"
     >
-      <h2 className="text-4xl font-bold text-center text-blue-400 mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-400 mb-12">
         Skills
       </h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
         {skills.map((skill, index) => (
           <div
             key={index}
             className="
               bg-[#161B22]
-              p-6
+              p-5 md:p-6
               rounded-xl
               text-center
               hover:border
@@ -53,7 +53,9 @@ const Skills = () => {
           >
             <div className="flex flex-col items-center gap-3">
               {skill.icon}
-              <p className="font-medium">{skill.name}</p>
+              <p className="font-medium text-sm md:text-base">
+                {skill.name}
+              </p>
             </div>
           </div>
         ))}

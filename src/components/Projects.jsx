@@ -2,18 +2,16 @@ const projects = [
   {
     title: "Placement Portal App",
     description:
-      "A web application that connects students, recruiters, and administrators. Features include job postings, application tracking, student profiles, and placement management.",
+      "A web application that connects students, recruiters, and administrators.",
     tech: "React, Node.js, Express.js, MongoDB",
     github: "https://github.com/SiddhiMohite20/Placement_portal-",
-    
   },
   {
     title: "Women's Safety App",
     description:
-      "A safety-focused application that provides emergency SOS alerts, live location sharing, emergency contacts, and quick access to nearby help resources.",
+      "A safety-focused application that provides emergency SOS alerts and live location sharing.",
     tech: "React, Node.js, MongoDB",
     github: "https://github.com/SiddhiMohite20/AI-Powered-Women-Safety-Platform",
-   
   },
 ];
 
@@ -21,19 +19,19 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="bg-[#161B22] text-white py-24 px-8"
+      className="bg-[#161B22] text-white py-20 px-4 sm:px-6 md:px-8"
     >
-      <h2 className="text-4xl font-bold text-center text-blue-400 mb-12">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-blue-400 mb-12">
         Projects
       </h2>
 
-      <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {projects.map((project, index) => (
           <div
             key={index}
             className="
               bg-[#0D1117]
-              p-6
+              p-5 md:p-6
               rounded-xl
               hover:border
               hover:border-blue-500
@@ -44,27 +42,33 @@ const Projects = () => {
               duration-300
             "
           >
-            <h3 className="text-2xl font-bold text-blue-400 mb-4">
+            <h3 className="text-xl md:text-2xl font-bold text-blue-400 mb-4">
               {project.title}
             </h3>
 
-            <p className="text-gray-400 mb-4">
+            <p className="text-gray-400 text-sm md:text-base mb-4">
               {project.description}
             </p>
 
-            <p className="text-sm text-blue-300 mb-6">
+            <p className="text-sm text-blue-300 mb-6 break-words">
               {project.tech}
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap gap-4">
               <a
                 href={project.github}
-                className="border border-blue-500 px-4 py-2 rounded-lg"
+                target="_blank"
+                rel="noreferrer"
+                className="
+                  border border-blue-500
+                  px-4 py-2
+                  rounded-lg
+                  hover:bg-blue-500
+                  transition
+                "
               >
                 GitHub
               </a>
-
-              
             </div>
           </div>
         ))}

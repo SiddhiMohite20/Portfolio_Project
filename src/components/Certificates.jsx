@@ -9,7 +9,7 @@ const Certificates = () => {
   return (
     <section
       id="certificates"
-      className="bg-[#161B22] text-white py-24 px-8"
+      className="bg-[#161B22] text-white py-24 px-8 md:px-8"
     >
       <h2 className="text-4xl font-bold text-center text-blue-400">
         Certifications
