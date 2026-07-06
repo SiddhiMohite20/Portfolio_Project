@@ -13,6 +13,13 @@ const projects = [
     tech: "React, Node.js, MongoDB",
     github: "https://github.com/SiddhiMohite20/AI-Powered-Women-Safety-Platform",
   },
+  {
+    title:"Excel-Analyzer",
+    description:
+    "Built a MERN-based web application for uploading and analyzing Excel files with authentication, interactive dashboards, dynamic charts, search, pagination, file history, and responsive UI.",
+    tech :"React.js,Node.js,Express.js,MongoDB,Tailwind CSS,Axios,Recharts,Multer,XLSX,JWT,bcrypt",
+    github:"https://github.com/SiddhiMohite20/Excel-Analyzer"
+  }
 ];
 
 const Projects = () => {
