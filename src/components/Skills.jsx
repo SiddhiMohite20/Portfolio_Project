@@ -1,76 +1,147 @@
+import { useEffect, useRef, useState } from "react";
+
 import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaJava,
+  FaPython,
   FaReact,
   FaNodeJs,
   FaGitAlt,
-  FaHtml5,
-  FaCss3Alt,
+  FaChartLine,
 } from "react-icons/fa";
 
 import {
-  SiMongodb,
+  SiTailwindcss,
+  SiBootstrap,
   SiExpress,
-  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiGithub,
+  SiPostman,
+  SiJsonwebtokens,
+  SiSocketdotio,
+  SiLeaflet,
+  SiAxios,
 } from "react-icons/si";
 
-const skills = [
+import { DiDatabase } from "react-icons/di";
+
+const skillGroups = [
   {
-    name: "HTML",
-    icon: <FaHtml5 />,
-    color: "#FF6B4A",
+    title: "Languages",
+    number: "01",
+    description: "Core programming & markup",
+    color: "#C9A27E",
+    skills: [
+      { name: "HTML", icon: <FaHtml5 /> },
+      { name: "CSS", icon: <FaCss3Alt /> },
+      { name: "JavaScript", icon: <FaJs /> },
+      { name: "Java", icon: <FaJava /> },
+      { name: "Python", icon: <FaPython /> },
+      { name: "SQL", icon: <DiDatabase /> },
+    ],
   },
+
   {
-    name: "CSS",
-    icon: <FaCss3Alt />,
-    color: "#8B9CFF",
+    title: "Frontend",
+    number: "02",
+    description: "Interfaces & user experiences",
+    color: "#A78BFA",
+    skills: [
+      { name: "React.js", icon: <FaReact /> },
+      { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+      { name: "Bootstrap", icon: <SiBootstrap /> },
+    ],
   },
+
   {
-    name: "JavaScript",
-    icon: <SiJavascript />,
-    color: "#F5C451",
+    title: "Backend",
+    number: "03",
+    description: "Server-side development",
+    color: "#5EEAD4",
+    skills: [
+      { name: "Node.js", icon: <FaNodeJs /> },
+      { name: "Express.js", icon: <SiExpress /> },
+      { name: "REST API", icon: "API" },
+      { name: "JWT", icon: <SiJsonwebtokens /> },
+      { name: "Socket.IO", icon: <SiSocketdotio /> },
+    ],
   },
+
   {
-    name: "React",
-    icon: <FaReact />,
-    color: "#61DAFB",
+    title: "Database",
+    number: "04",
+    description: "Data storage & management",
+    color: "#60A5FA",
+    skills: [
+      { name: "MongoDB", icon: <SiMongodb /> },
+      { name: "MySQL", icon: <SiMysql /> },
+    ],
   },
+
   {
-    name: "Node.js",
-    icon: <FaNodeJs />,
-    color: "#7CCB70",
+    title: "Tools",
+    number: "05",
+    description: "Development workflow",
+    color: "#FB7185",
+    skills: [
+      { name: "Git", icon: <FaGitAlt /> },
+      { name: "GitHub", icon: <SiGithub /> },
+      { name: "Postman", icon: <SiPostman /> },
+      { name: "Axios", icon: <SiAxios /> },
+    ],
   },
+
   {
-    name: "Express.js",
-    icon: <SiExpress />,
-    color: "#E8DDD2",
-  },
-  {
-    name: "MongoDB",
-    icon: <SiMongodb />,
-    color: "#6FCF97",
-  },
-  {
-    name: "Git",
-    icon: <FaGitAlt />,
-    color: "#F47C5C",
+    title: "Libraries & Other",
+    number: "06",
+    description: "Supporting technologies",
+    color: "#FBBF24",
+    skills: [
+      { name: "Leaflet", icon: <SiLeaflet /> },
+      { name: "Recharts", icon: <FaChartLine /> },
+    ],
   },
 ];
 
 const Skills = () => {
+  const sectionRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+        }
+      },
+      { threshold: 0.12 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="skills"
       className="
         relative
         overflow-hidden
-        bg-[#17121B]
-        text-[#F5EEE6]
+        bg-[#12100F]
+        text-[#F3EDE4]
         py-28
         px-6
         sm:px-8
       "
     >
       {/* Background Glow */}
-
       <div
         className="
           absolute
@@ -79,8 +150,8 @@ const Skills = () => {
           w-[500px]
           h-[500px]
           rounded-full
-          bg-[#FF6B4A]/8
-          blur-[150px]
+          bg-[#A78BFA]/5
+          blur-[140px]
           pointer-events-none
         "
       />
@@ -93,299 +164,294 @@ const Skills = () => {
           w-[500px]
           h-[500px]
           rounded-full
-          bg-[#8B9CFF]/8
-          blur-[150px]
+          bg-[#C9A27E]/5
+          blur-[140px]
           pointer-events-none
         "
       />
 
       <div className="relative z-10 max-w-6xl mx-auto">
 
-        {/* ================= HEADER ================= */}
+        {/* Header */}
+        <div
+          className={`
+            mb-16
+            transition-all
+            duration-1000
+            ${
+              visible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-12"
+            }
+          `}
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <span className="w-10 h-[1px] bg-[#C9A27E]" />
 
-        <div className="mb-16">
-
-          <div className="flex items-center gap-4 mb-7">
-
-            <span className="text-[#FF6B4A] text-xl">
-              ✦
-            </span>
-
-            <span
-              className="
-                text-[10px]
-                uppercase
-                tracking-[0.45em]
-                text-white/40
-              "
-            >
+            <span className="
+              text-[10px]
+              uppercase
+              tracking-[0.45em]
+              text-[#C9A27E]
+            ">
               My Toolkit
             </span>
-
           </div>
 
-          <div
-            className="
-              flex
-              flex-col
-              md:flex-row
-              md:items-end
-              md:justify-between
-              gap-8
-            "
-          >
-
-            <h2
-              className="
-                text-6xl
-                sm:text-7xl
-                md:text-8xl
-                font-semibold
-                tracking-[-0.07em]
-                leading-[0.8]
-              "
-            >
-              Skills
-              <span className="text-[#FF6B4A]">
-                .
-              </span>
+          <div className="
+            flex
+            flex-col
+            md:flex-row
+            md:items-end
+            md:justify-between
+            gap-6
+          ">
+            <h2 className="
+              text-5xl
+              sm:text-6xl
+              md:text-7xl
+              font-light
+              tracking-[-0.06em]
+            ">
+              Skills<span className="text-[#C9A27E]">.</span>
             </h2>
 
-            <p
-              className="
-                max-w-sm
-                text-sm
-                leading-6
-                text-white/40
-              "
-            >
-              A collection of technologies I use to
-              design, build and bring digital ideas to life.
+            <p className="
+              max-w-md
+              text-sm
+              leading-6
+              text-white/40
+            ">
+              Technologies and tools I use to design,
+              develop and bring digital products to life.
             </p>
-
           </div>
-
         </div>
 
+        {/* Skill Groups */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
-        {/* ================= SKILL GRID ================= */}
-
-        <div
-          className="
-            grid
-            grid-cols-2
-            md:grid-cols-4
-            gap-3
-            sm:gap-4
-          "
-        >
-
-          {skills.map((skill) => (
-
+          {skillGroups.map((group, index) => (
             <div
-              key={skill.name}
-              className="
+              key={group.title}
+              className={`
                 group
                 relative
-                h-[190px]
-                sm:h-[210px]
                 overflow-hidden
-                rounded-[22px]
-                bg-[#211A26]
+                rounded-2xl
                 border
-                border-white/[0.07]
-                p-5
-                sm:p-6
+                border-white/[0.08]
+                bg-white/[0.025]
+                p-6
+                sm:p-7
+                min-h-[230px]
                 transition-all
-                duration-500
+                duration-700
                 hover:-translate-y-2
-                hover:border-white/15
-              "
+                hover:border-white/[0.15]
+                hover:bg-white/[0.04]
+                ${
+                  visible
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-12"
+                }
+              `}
+              style={{
+                transitionDelay: visible
+                  ? `${index * 120}ms`
+                  : "0ms",
+              }}
             >
 
-              {/* Hover Glow */}
-
+              {/* Glow */}
               <div
                 className="
                   absolute
-                  -top-16
-                  -right-16
-                  w-32
-                  h-32
+                  -top-20
+                  -right-20
+                  w-44
+                  h-44
                   rounded-full
-                  blur-3xl
+                  blur-[75px]
                   opacity-0
-                  group-hover:opacity-30
+                  group-hover:opacity-20
                   transition-opacity
-                  duration-500
+                  duration-700
                 "
                 style={{
-                  backgroundColor: skill.color,
+                  backgroundColor: group.color,
                 }}
               />
 
+              {/* Top */}
+              <div className="
+                relative
+                z-10
+                flex
+                items-center
+                justify-between
+              ">
+                <span className="
+                  text-[10px]
+                  tracking-[0.3em]
+                  text-white/20
+                ">
+                  {group.number}
+                </span>
 
-              {/* Icon */}
-
-              <div
-                className="
-                  relative
-                  z-10
-                  text-4xl
-                  sm:text-5xl
-                  transition-all
-                  duration-500
-                  group-hover:scale-110
-                  group-hover:-translate-y-1
-                "
-                style={{
-                  color: skill.color,
-                }}
-              >
-                {skill.icon}
+                <span
+                  className="
+                    text-lg
+                    opacity-40
+                    group-hover:opacity-100
+                    group-hover:rotate-90
+                    transition-all
+                    duration-500
+                  "
+                  style={{ color: group.color }}
+                >
+                  ✦
+                </span>
               </div>
 
+              {/* Title */}
+              <div className="relative z-10 mt-7">
+                <h3 className="
+                  text-2xl
+                  sm:text-3xl
+                  font-light
+                  text-white/85
+                  group-hover:text-white
+                  transition-colors
+                ">
+                  {group.title}
+                </h3>
 
-              {/* Skill Name */}
+                <p className="
+                  mt-2
+                  text-[11px]
+                  text-white/25
+                ">
+                  {group.description}
+                </p>
+              </div>
 
+              {/* Skills */}
+              <div className="
+                relative
+                z-10
+                mt-7
+                flex
+                flex-wrap
+                gap-2
+              ">
+                {group.skills.map((skill) => (
+                  <div
+                    key={skill.name}
+                    className="
+                      group/skill
+                      flex
+                      items-center
+                      gap-2.5
+                      px-3
+                      py-2
+                      rounded-lg
+                      border
+                      border-white/[0.07]
+                      bg-black/10
+                      hover:-translate-y-1
+                      hover:bg-white/[0.06]
+                      hover:border-white/[0.15]
+                      transition-all
+                      duration-300
+                    "
+                  >
+                    <span
+                      className="
+                        text-base
+                        group-hover/skill:scale-110
+                        transition-transform
+                      "
+                      style={{ color: group.color }}
+                    >
+                      {skill.icon}
+                    </span>
+
+                    <span className="
+                      text-[11px]
+                      sm:text-xs
+                      text-white/50
+                      group-hover/skill:text-white/90
+                      transition-colors
+                    ">
+                      {skill.name}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Hover Line */}
               <div
                 className="
                   absolute
-                  bottom-5
-                  left-5
-                  sm:left-6
+                  bottom-0
+                  left-0
+                  h-[1px]
+                  w-0
+                  group-hover:w-full
+                  transition-all
+                  duration-700
                 "
-              >
-
-                <p
-                  className="
-                    text-sm
-                    sm:text-base
-                    font-medium
-                    text-white/80
-                    group-hover:text-white
-                    transition-colors
-                    duration-300
-                  "
-                >
-                  {skill.name}
-                </p>
-
-              </div>
+                style={{
+                  backgroundColor: group.color,
+                }}
+              />
 
             </div>
-
           ))}
 
         </div>
 
-
-        {/* ================= BOTTOM MARQUEE ================= */}
-
+        {/* Bottom */}
         <div
-          className="
-            mt-16
-            overflow-hidden
-            border-y
-            border-white/[0.07]
-            py-5
-          "
+          className={`
+            mt-14
+            pt-6
+            border-t
+            border-white/[0.08]
+            flex
+            flex-col
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
+            gap-4
+            transition-all
+            duration-1000
+            ${
+              visible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            }
+          `}
         >
+          <span className="
+            text-[10px]
+            uppercase
+            tracking-[0.3em]
+            text-white/15
+          ">
+            Learn · Build · Ship
+          </span>
 
-          <div
-            className="
-              flex
-              w-max
-              gap-10
-              animate-[marquee_18s_linear_infinite]
-            "
-          >
-
-            <span className="text-xs uppercase tracking-[0.3em] text-white/25">
-              React
-            </span>
-
-            <span className="text-[#FF6B4A]">
-              ✦
-            </span>
-
-            <span className="text-xs uppercase tracking-[0.3em] text-white/25">
-              Node.js
-            </span>
-
-            <span className="text-[#8B9CFF]">
-              ✦
-            </span>
-
-            <span className="text-xs uppercase tracking-[0.3em] text-white/25">
-              MongoDB
-            </span>
-
-            <span className="text-[#F5C451]">
-              ✦
-            </span>
-
-            <span className="text-xs uppercase tracking-[0.3em] text-white/25">
-              JavaScript
-            </span>
-
-            <span className="text-[#FF6B4A]">
-              ✦
-            </span>
-
-            <span className="text-xs uppercase tracking-[0.3em] text-white/25">
-              Express
-            </span>
-
-            <span className="text-[#8B9CFF]">
-              ✦
-            </span>
-
-            <span className="text-xs uppercase tracking-[0.3em] text-white/25">
-              Git
-            </span>
-
-            <span className="text-[#F5C451]">
-              ✦
-            </span>
-
-            <span className="text-xs uppercase tracking-[0.3em] text-white/25">
-              React
-            </span>
-
-            <span className="text-[#FF6B4A]">
-              ✦
-            </span>
-
-            <span className="text-xs uppercase tracking-[0.3em] text-white/25">
-              Node.js
-            </span>
-
-          </div>
-
+          <span className="
+            text-sm
+            text-[#C9A27E]/50
+          ">
+            Always learning something new.
+          </span>
         </div>
 
       </div>
-
-
-      {/* ================= ANIMATION ================= */}
-
-      <style>{`
-
-        @keyframes marquee {
-
-          0% {
-            transform: translateX(0);
-          }
-
-          100% {
-            transform: translateX(-35%);
-          }
-
-        }
-
-      `}</style>
-
     </section>
   );
 };

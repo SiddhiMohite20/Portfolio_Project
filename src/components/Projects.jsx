@@ -1,30 +1,44 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  FaMapMarkerAlt,
+  FaShieldAlt,
+  FaGlobe,
+  FaLanguage,
+  FaChartBar,
+  FaFileExcel,
+  FaArrowRight,
+  FaGithub,
+} from "react-icons/fa";
 
 const projects = [
   {
     number: "01",
-    title: "Placement Portal App",
+    title: "SheSecure",
+    category: "Safety Platform",
     description:
-      "A web application that connects students, recruiters, and administrators.",
-    tech: ["React", "Node.js", "Express.js", "MongoDB"],
-    github: "https://github.com/SiddhiMohite20/Placement_portal-",
-    type: "placement",
-    accent: "#7DD3FC",
+      "A women-safety platform designed with emergency SOS alerts, trusted contacts and live location sharing to provide quick assistance during risky situations.",
+    tech: ["React", "Node.js", "Express.js", "MongoDB", "Leaflet"],
+    github: "https://github.com/SiddhiMohite20/SheSecure",
+    accent: "#D8A7B1",
+    type: "safety",
   },
+
   {
     number: "02",
-    title: "Women's Safety App",
+    title: "Translation App",
+    category: "Web Application",
     description:
-      "A safety-focused application that provides emergency SOS alerts and live location sharing.",
-    tech: ["React", "Node.js", "MongoDB"],
-    github:
-      "https://github.com/SiddhiMohite20/AI-Powered-Women-Safety-Platform",
-    type: "safety",
-    accent: "#FB7185",
+      "A modern translation application that converts text into multiple languages with language selection, loading states, error handling and one-click copy functionality.",
+    tech: ["React", "Vite", "Tailwind CSS", "RapidAPI"],
+    github: "https://github.com/SiddhiMohite20/Transaltion-app",
+    accent: "#B8A1FF",
+    type: "translation",
   },
+
   {
     number: "03",
     title: "Excel Analyzer",
+    category: "Data Analytics",
     description:
       "A MERN-based application for uploading and analyzing Excel files with authentication, dashboards, dynamic charts, search, pagination and file history.",
     tech: [
@@ -36,489 +50,623 @@ const projects = [
       "Recharts",
     ],
     github: "https://github.com/SiddhiMohite20/Excel-Analyzer",
+    accent: "#8FC7B5",
     type: "excel",
-    accent: "#5EEAD4",
   },
 ];
 
-/* =========================================================
-   PROJECT PREVIEW
-========================================================= */
-
-const ProjectPreview = ({ project }) => {
-  /* ================= PLACEMENT PORTAL ================= */
-
-  if (project.type === "placement") {
-    return (
-      <div
-        className="
-          absolute
-          inset-0
-          bg-[#111827]
-          p-7
-          sm:p-9
-          transition-transform
-          duration-700
-          group-hover:scale-[1.02]
-        "
-      >
-        {/* Header */}
-
-        <div className="flex items-center justify-between mb-7">
-          <div>
-            <p className="text-[8px] uppercase tracking-[0.3em] text-[#7DD3FC]/60">
-              Student Dashboard
-            </p>
-
-            <p className="text-base sm:text-lg text-white/75 mt-1">
-              Placement Overview
-            </p>
-          </div>
-
-          <div
-            className="
-              w-9
-              h-9
-              rounded-full
-              bg-[#7DD3FC]/10
-              border
-              border-[#7DD3FC]/20
-              flex
-              items-center
-              justify-center
-            "
-          >
-            <div className="w-3 h-3 rounded-full bg-[#7DD3FC]/70" />
-          </div>
-        </div>
-
-        {/* Stats */}
-
-        <div className="grid grid-cols-3 gap-3 mb-5">
-          <div className="rounded-xl bg-white/[0.04] border border-white/[0.06] p-4">
-            <p className="text-[8px] text-white/30">Applied</p>
-            <p className="text-xl text-white/80 mt-2">24</p>
-          </div>
-
-          <div className="rounded-xl bg-white/[0.04] border border-white/[0.06] p-4">
-            <p className="text-[8px] text-white/30">Interviews</p>
-            <p className="text-xl text-[#7DD3FC] mt-2">08</p>
-          </div>
-
-          <div className="rounded-xl bg-white/[0.04] border border-white/[0.06] p-4">
-            <p className="text-[8px] text-white/30">Offers</p>
-            <p className="text-xl text-[#6FCF97] mt-2">03</p>
-          </div>
-        </div>
-
-        {/* Jobs */}
-
-        <div className="space-y-3">
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.035] border border-white/[0.06]">
-            <div className="w-9 h-9 rounded-lg bg-[#7DD3FC]/10 flex items-center justify-center text-[#7DD3FC] text-xs">
-              J
-            </div>
-
-            <div className="flex-1">
-              <p className="text-[10px] sm:text-xs text-white/70">
-                Full Stack Developer
-              </p>
-
-              <p className="text-[8px] text-white/25 mt-1">
-                Software Company
-              </p>
-            </div>
-
-            <span className="text-[8px] text-[#6FCF97]">
-              Applied
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.035] border border-white/[0.06]">
-            <div className="w-9 h-9 rounded-lg bg-[#7DD3FC]/10 flex items-center justify-center text-[#7DD3FC] text-xs">
-              R
-            </div>
-
-            <div className="flex-1">
-              <p className="text-[10px] sm:text-xs text-white/70">
-                React Developer
-              </p>
-
-              <p className="text-[8px] text-white/25 mt-1">
-                Technology Company
-              </p>
-            </div>
-
-            <span className="text-[8px] text-[#7DD3FC]">
-              Interview
-            </span>
-          </div>
-        </div>
-
-        {/* Progress */}
-
-        <div className="mt-5">
-          <div className="flex justify-between mb-2">
-            <span className="text-[8px] text-white/30">
-              Placement Progress
-            </span>
-
-            <span className="text-[8px] text-[#7DD3FC]">
-              72%
-            </span>
-          </div>
-
-          <div className="h-1 rounded-full bg-white/[0.06] overflow-hidden">
-            <div
-              className="
-                h-full
-                w-[72%]
-                rounded-full
-                bg-[#7DD3FC]/60
-                transition-all
-                duration-700
-                group-hover:w-[82%]
-              "
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  /* ================= WOMEN'S SAFETY ================= */
+const ProjectVisual = ({ project }) => {
+  /* ---------------- SHESECURE ---------------- */
 
   if (project.type === "safety") {
     return (
-      <div
-        className="
-          absolute
-          inset-0
-          bg-[#1A1115]
-          overflow-hidden
-          transition-transform
-          duration-700
-          group-hover:scale-[1.02]
-        "
-      >
-        {/* Map Grid */}
+      <div className="relative w-full h-full p-6 sm:p-8 overflow-hidden">
 
-        <div className="absolute inset-0 opacity-20">
-          <div
-            className="
-              absolute
-              inset-0
-              bg-[linear-gradient(30deg,transparent_48%,#FB7185_49%,transparent_50%)]
-              bg-[length:80px_80px]
-            "
-          />
+        {/* Map Background */}
 
+        <div className="absolute inset-0 opacity-[0.16]">
           <div
-            className="
-              absolute
-              inset-0
-              bg-[linear-gradient(-30deg,transparent_48%,#FB7185_49%,transparent_50%)]
-              bg-[length:80px_80px]
-            "
+            className="w-full h-full"
+            style={{
+              backgroundImage: `
+                linear-gradient(
+                  35deg,
+                  transparent 42%,
+                  ${project.accent} 43%,
+                  transparent 44%
+                ),
+                linear-gradient(
+                  120deg,
+                  transparent 48%,
+                  ${project.accent} 49%,
+                  transparent 50%
+                ),
+                linear-gradient(
+                  70deg,
+                  transparent 48%,
+                  ${project.accent} 49%,
+                  transparent 50%
+                )
+              `,
+              backgroundSize: "90px 90px",
+            }}
           />
         </div>
 
-        {/* Roads */}
+        {/* Map Lines */}
+
+        <div className="absolute left-[18%] top-0 bottom-0 w-[1px] bg-white/10 rotate-[18deg]" />
+        <div className="absolute left-[50%] top-0 bottom-0 w-[1px] bg-white/10 rotate-[-25deg]" />
+        <div className="absolute right-[20%] top-0 bottom-0 w-[1px] bg-white/10 rotate-[12deg]" />
+
+        {/* Location Pins */}
 
         <div
           className="
             absolute
-            w-[120%]
-            h-[1px]
-            bg-[#FB7185]/20
-            rotate-[25deg]
-            top-[35%]
-            left-[-10%]
-          "
-        />
-
-        <div
-          className="
-            absolute
-            w-[120%]
-            h-[1px]
-            bg-[#FB7185]/15
-            rotate-[-20deg]
-            top-[60%]
-            left-[-10%]
-          "
-        />
-
-        {/* Location Points */}
-
-        <div
-          className="
-            absolute
-            top-[27%]
+            top-[28%]
             left-[28%]
-            w-4
-            h-4
-            rounded-full
-            bg-[#FB7185]
-            shadow-[0_0_25px_#FB7185]
-          "
-        />
-
-        <div
-          className="
-            absolute
-            top-[48%]
-            left-[58%]
-            w-3
-            h-3
-            rounded-full
-            bg-[#FDB4C0]
-          "
-        />
-
-        <div
-          className="
-            absolute
-            top-[62%]
-            left-[38%]
-            w-2.5
-            h-2.5
-            rounded-full
-            bg-[#FB7185]
-          "
-        />
-
-        {/* Pulse */}
-
-        <div
-          className="
-            absolute
-            top-[24%]
-            left-[25%]
+            flex
+            items-center
+            justify-center
             w-10
             h-10
             rounded-full
-            border
-            border-[#FB7185]/40
-            animate-ping
+            animate-pulse
           "
-        />
-
-        {/* Live Location */}
-
-        <div
-          className="
-            absolute
-            top-7
-            left-7
-            px-4
-            py-2
-            rounded-full
-            bg-[#21181B]/90
-            backdrop-blur-md
-            border
-            border-white/[0.08]
-          "
+          style={{
+            backgroundColor: `${project.accent}20`,
+          }}
         >
-          <p className="text-[8px] uppercase tracking-[0.3em] text-[#FB7185]">
-            Live Location
-          </p>
+          <FaMapMarkerAlt
+            className="text-lg"
+            style={{ color: project.accent }}
+          />
         </div>
 
-        {/* SOS */}
+        <div
+          className="
+            absolute
+            bottom-[24%]
+            right-[28%]
+            flex
+            items-center
+            justify-center
+            w-8
+            h-8
+            rounded-full
+          "
+          style={{
+            backgroundColor: `${project.accent}15`,
+          }}
+        >
+          <FaMapMarkerAlt
+            className="text-sm"
+            style={{ color: `${project.accent}90` }}
+          />
+        </div>
+
+        {/* Center Safety Card */}
 
         <div
           className="
             absolute
-            bottom-7
-            left-7
-            right-7
-            flex
-            items-center
-            justify-between
-            p-5
+            left-1/2
+            top-1/2
+            -translate-x-1/2
+            -translate-y-1/2
+            w-[62%]
+            sm:w-[55%]
             rounded-2xl
-            bg-[#21181B]/90
-            backdrop-blur-md
             border
-            border-white/[0.08]
+            border-white/10
+            bg-[#121014]/95
+            backdrop-blur-xl
+            p-4
+            shadow-2xl
+            transition-all
+            duration-700
+            group-hover:scale-105
+            group-hover:-translate-y-[55%]
           "
         >
-          <div>
-            <p className="text-[8px] uppercase tracking-[0.25em] text-white/30">
-              Emergency Status
-            </p>
 
-            <p className="text-sm text-white/70 mt-1">
-              Trusted Contacts Active
-            </p>
+          <div className="flex items-center justify-between">
+
+            <div className="flex items-center gap-2">
+
+              <div
+                className="w-8 h-8 rounded-lg flex items-center justify-center"
+                style={{
+                  backgroundColor: `${project.accent}15`,
+                }}
+              >
+                <FaShieldAlt
+                  style={{ color: project.accent }}
+                />
+              </div>
+
+              <div>
+                <p className="text-[9px] text-white/30 uppercase tracking-wider">
+                  Safety
+                </p>
+
+                <p className="text-xs text-white/80">
+                  SheSecure
+                </p>
+              </div>
+
+            </div>
+
+            <span
+              className="w-2 h-2 rounded-full animate-pulse"
+              style={{
+                backgroundColor: project.accent,
+                boxShadow: `0 0 12px ${project.accent}`,
+              }}
+            />
+
           </div>
 
           <div
             className="
-              relative
-              w-14
-              h-14
-              rounded-full
-              bg-[#FB7185]/10
-              border
-              border-[#FB7185]/40
+              mt-4
+              h-9
+              rounded-lg
               flex
               items-center
               justify-center
               text-[10px]
-              font-semibold
-              text-[#FB7185]
-              transition-all
-              duration-500
-              group-hover:scale-110
+              font-medium
+              uppercase
+              tracking-wider
             "
+            style={{
+              backgroundColor: `${project.accent}18`,
+              color: project.accent,
+            }}
           >
-            <span className="absolute inset-[-6px] rounded-full border border-[#FB7185]/10 animate-pulse" />
-            SOS
+            SOS • Location Active
           </div>
+
         </div>
+
+        {/* Live Label */}
+
+        <div
+          className="
+            absolute
+            bottom-5
+            left-6
+            flex
+            items-center
+            gap-2
+            text-[9px]
+            uppercase
+            tracking-[0.25em]
+          "
+          style={{ color: `${project.accent}90` }}
+        >
+          <span
+            className="w-1.5 h-1.5 rounded-full animate-pulse"
+            style={{ backgroundColor: project.accent }}
+          />
+          Live Location
+        </div>
+
       </div>
     );
   }
 
-  /* ================= EXCEL ANALYZER ================= */
 
-  return (
-    <div
-      className="
-        absolute
-        inset-0
-        bg-[#101918]
-        p-7
-        sm:p-9
-        transition-transform
-        duration-700
-        group-hover:scale-[1.02]
-      "
-    >
-      {/* Header */}
+  /* ---------------- TRANSLATION APP ---------------- */
 
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <p className="text-[8px] uppercase tracking-[0.3em] text-[#5EEAD4]/60">
-            Analytics Dashboard
-          </p>
+  if (project.type === "translation") {
+    return (
+      <div className="relative w-full h-full flex items-center justify-center p-6 sm:p-8">
 
-          <p className="text-base sm:text-lg text-white/70 mt-1">
-            Excel Overview
-          </p>
-        </div>
+        {/* Background Orbs */}
 
-        <div className="px-3 py-1.5 rounded-full bg-[#5EEAD4]/10 border border-[#5EEAD4]/20 text-[8px] text-[#5EEAD4]">
-          ANALYZING
-        </div>
-      </div>
+        <div
+          className="
+            absolute
+            w-48
+            h-48
+            rounded-full
+            blur-3xl
+            opacity-20
+            -top-10
+            -left-10
+          "
+          style={{ backgroundColor: project.accent }}
+        />
 
-      {/* Spreadsheet */}
+        <div
+          className="
+            absolute
+            w-40
+            h-40
+            rounded-full
+            blur-3xl
+            opacity-10
+            bottom-0
+            right-0
+          "
+          style={{ backgroundColor: project.accent }}
+        />
 
-      <div className="rounded-xl border border-white/[0.07] overflow-hidden bg-white/[0.015]">
-        <div className="grid grid-cols-4 bg-white/[0.04]">
-          {["Name", "Sales", "Growth", "Status"].map((item) => (
+        {/* Translation Interface */}
+
+        <div className="relative w-full max-w-[440px]">
+
+          {/* Top Languages */}
+
+          <div className="flex items-center justify-center gap-3 sm:gap-5">
+
             <div
-              key={item}
-              className="px-3 py-3 text-[7px] text-white/30 border-r border-white/[0.05]"
-            >
-              {item}
-            </div>
-          ))}
-        </div>
-
-        {[1, 2, 3, 4].map((row) => (
-          <div
-            key={row}
-            className="
-              grid
-              grid-cols-4
-              border-t
-              border-white/[0.05]
-              hover:bg-[#5EEAD4]/[0.04]
-              transition-colors
-            "
-          >
-            <div className="px-3 py-3 text-[7px] text-white/45">
-              User {row}
-            </div>
-
-            <div className="px-3 py-3 text-[7px] text-white/45">
-              ${row * 240}
-            </div>
-
-            <div className="px-3 py-3 text-[7px] text-[#5EEAD4]">
-              +{row * 8}%
-            </div>
-
-            <div className="px-3 py-3 text-[7px] text-white/35">
-              Active
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Chart */}
-
-      <div className="mt-6 flex items-end gap-2 h-24">
-        {[35, 55, 42, 70, 50, 82, 65, 92].map(
-          (height, index) => (
-            <div
-              key={index}
               className="
-                flex-1
-                rounded-t-md
-                bg-[#5EEAD4]/35
-                transition-all
-                duration-500
-                group-hover:bg-[#5EEAD4]/65
+                px-4
+                py-2
+                rounded-full
+                border
+                border-white/10
+                bg-white/[0.04]
+                text-[10px]
+                uppercase
+                tracking-wider
+                text-white/60
+              "
+            >
+              English
+            </div>
+
+            <FaArrowRight
+              className="text-xs"
+              style={{ color: `${project.accent}90` }}
+            />
+
+            <div
+              className="
+                px-4
+                py-2
+                rounded-full
+                border
+                bg-white/[0.04]
+                text-[10px]
+                uppercase
+                tracking-wider
               "
               style={{
-                height: `${height}%`,
+                borderColor: `${project.accent}35`,
+                color: project.accent,
               }}
-            />
-          )
-        )}
+            >
+              Marathi
+            </div>
+
+          </div>
+
+
+          {/* Main Translation Card */}
+
+          <div
+            className="
+              mt-5
+              rounded-2xl
+              border
+              border-white/10
+              bg-[#121014]/95
+              backdrop-blur-xl
+              p-5
+              shadow-2xl
+              transition-all
+              duration-700
+              group-hover:scale-[1.03]
+            "
+          >
+
+            {/* Input */}
+
+            <div className="mb-4">
+
+              <div className="flex items-center gap-2 mb-2">
+                <FaLanguage
+                  className="text-xs"
+                  style={{ color: project.accent }}
+                />
+
+                <span className="text-[9px] uppercase tracking-wider text-white/30">
+                  Original Text
+                </span>
+              </div>
+
+              <p className="text-sm text-white/75">
+                Welcome to my portfolio
+              </p>
+
+            </div>
+
+
+            {/* Divider */}
+
+            <div className="h-[1px] bg-white/[0.07]" />
+
+
+            {/* Output */}
+
+            <div className="mt-4">
+
+              <div className="flex items-center gap-2 mb-2">
+
+                <span
+                  className="text-[9px] uppercase tracking-wider"
+                  style={{ color: `${project.accent}90` }}
+                >
+                  Translation
+                </span>
+
+              </div>
+
+              <p
+                className="text-sm font-medium"
+                style={{ color: project.accent }}
+              >
+                माझ्या पोर्टफोलिओमध्ये स्वागत आहे
+              </p>
+
+            </div>
+
+          </div>
+
+
+          {/* Language Pills */}
+
+          <div className="flex justify-center gap-2 mt-4 flex-wrap">
+
+            {["Hindi", "Marathi", "French", "Spanish", "German"].map(
+              (language, index) => (
+                <span
+                  key={language}
+                  className="
+                    px-2.5
+                    py-1
+                    rounded-full
+                    bg-white/[0.035]
+                    border
+                    border-white/[0.07]
+                    text-[8px]
+                    text-white/35
+                  "
+                >
+                  {language}
+                </span>
+              )
+            )}
+
+          </div>
+
+        </div>
+
+      </div>
+    );
+  }
+
+
+  /* ---------------- EXCEL ANALYZER ---------------- */
+
+  return (
+    <div className="relative w-full h-full p-6 sm:p-8">
+
+      {/* Dashboard */}
+
+      <div
+        className="
+          relative
+          h-full
+          rounded-2xl
+          border
+          border-white/10
+          bg-[#111416]
+          p-5
+          overflow-hidden
+          transition-all
+          duration-700
+          group-hover:scale-[1.02]
+        "
+      >
+
+        {/* Header */}
+
+        <div className="flex items-center justify-between">
+
+          <div className="flex items-center gap-3">
+
+            <div
+              className="w-9 h-9 rounded-xl flex items-center justify-center"
+              style={{
+                backgroundColor: `${project.accent}15`,
+              }}
+            >
+              <FaFileExcel
+                style={{ color: project.accent }}
+              />
+            </div>
+
+            <div>
+
+              <p className="text-[9px] uppercase tracking-wider text-white/25">
+                Analytics
+              </p>
+
+              <p className="text-xs text-white/75">
+                Excel Dashboard
+              </p>
+
+            </div>
+
+          </div>
+
+          <span
+            className="text-[9px]"
+            style={{ color: `${project.accent}90` }}
+          >
+            2026
+          </span>
+
+        </div>
+
+
+        {/* Stats */}
+
+        <div className="grid grid-cols-3 gap-2 mt-5">
+
+          {[
+            ["Rows", "1,248"],
+            ["Sheets", "06"],
+            ["Files", "24"],
+          ].map(([label, value]) => (
+
+            <div
+              key={label}
+              className="
+                rounded-xl
+                border
+                border-white/[0.06]
+                bg-white/[0.025]
+                p-3
+              "
+            >
+
+              <p className="text-[8px] uppercase tracking-wider text-white/25">
+                {label}
+              </p>
+
+              <p
+                className="mt-1 text-sm font-medium"
+                style={{ color: project.accent }}
+              >
+                {value}
+              </p>
+
+            </div>
+
+          ))}
+
+        </div>
+
+
+        {/* Chart */}
+
+        <div className="mt-5">
+
+          <div className="flex items-center justify-between mb-3">
+
+            <div className="flex items-center gap-2">
+
+              <FaChartBar
+                className="text-[10px]"
+                style={{ color: project.accent }}
+              />
+
+              <span className="text-[9px] text-white/35">
+                Data Overview
+              </span>
+
+            </div>
+
+            <span className="text-[8px] text-white/20">
+              Monthly
+            </span>
+
+          </div>
+
+
+          <div className="h-[105px] flex items-end gap-2 px-2">
+
+            {[38, 62, 48, 78, 55, 88, 70, 96].map(
+              (height, index) => (
+
+                <div
+                  key={index}
+                  className="flex-1 h-full flex items-end"
+                >
+
+                  <div
+                    className="
+                      w-full
+                      rounded-t-md
+                      transition-all
+                      duration-700
+                      group-hover:opacity-100
+                    "
+                    style={{
+                      height: `${height}%`,
+                      backgroundColor: `${project.accent}${
+                        index === 7 ? "cc" : "45"
+                      }`,
+                    }}
+                  />
+
+                </div>
+
+              )
+            )}
+
+          </div>
+
+        </div>
+
+
+        {/* Bottom Search */}
+
+        <div className="mt-4 flex gap-2">
+
+          <div className="flex-1 h-7 rounded-lg bg-white/[0.035] border border-white/[0.06] flex items-center px-3">
+            <span className="text-[8px] text-white/20">
+              Search data...
+            </span>
+          </div>
+
+          <div
+            className="w-8 h-7 rounded-lg flex items-center justify-center"
+            style={{
+              backgroundColor: `${project.accent}18`,
+            }}
+          >
+            <span
+              className="text-[9px]"
+              style={{ color: project.accent }}
+            >
+              ↗
+            </span>
+          </div>
+
+        </div>
+
       </div>
 
-      <div className="flex justify-between mt-4">
-        <span className="text-[8px] text-white/25">
-          Monthly Growth
-        </span>
-
-        <span className="text-[8px] text-[#5EEAD4]">
-          +24.8%
-        </span>
-      </div>
     </div>
   );
 };
 
 
-/* =========================================================
-   PROJECTS SECTION
-========================================================= */
-
 const Projects = () => {
+  const [visible, setVisible] = useState(false);
   const sectionRef = useRef(null);
 
-  const [visible, setVisible] = useState(false);
-
-  /* =======================================================
-     INTERSECTION OBSERVER
-  ======================================================= */
-
   useEffect(() => {
+
     const observer = new IntersectionObserver(
       ([entry]) => {
+
         if (entry.isIntersecting) {
           setVisible(true);
+          observer.disconnect();
         }
+
       },
       {
-        threshold: 0.15,
+        threshold: 0.12,
       }
     );
 
@@ -526,12 +674,10 @@ const Projects = () => {
       observer.observe(sectionRef.current);
     }
 
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
+    return () => observer.disconnect();
+
   }, []);
+
 
   return (
     <section
@@ -547,394 +693,420 @@ const Projects = () => {
         sm:px-8
       "
     >
-      <div className="max-w-6xl mx-auto">
 
-        {/* =================================================
-            HEADER
-        ================================================= */}
+      {/* Background Glow */}
+
+      <div
+        className="
+          absolute
+          -top-40
+          -right-40
+          w-[500px]
+          h-[500px]
+          rounded-full
+          bg-[#B8A1FF]/5
+          blur-[150px]
+          pointer-events-none
+        "
+      />
+
+      <div
+        className="
+          absolute
+          bottom-0
+          -left-40
+          w-[450px]
+          h-[450px]
+          rounded-full
+          bg-[#D8A7B1]/5
+          blur-[150px]
+          pointer-events-none
+        "
+      />
+
+
+      <div className="relative z-10 max-w-6xl mx-auto">
+
+
+        {/* HEADER */}
 
         <div
           className={`
             mb-14
             transition-all
-            duration-[1100ms]
-            ease-[cubic-bezier(0.76,0,0.24,1)]
-
+            duration-1000
+            ease-[cubic-bezier(0.77,0,0.175,1)]
             ${
               visible
                 ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-16"
+                : "opacity-0 translate-y-12"
             }
           `}
         >
-          <p className="text-sm tracking-[0.25em] uppercase text-[#C9A27E] mb-4">
-            Selected Work
-          </p>
 
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+          <div className="flex items-center gap-4 mb-5">
 
-            <h2
-              className="
-                text-5xl
-                sm:text-6xl
-                md:text-7xl
-                font-semibold
-                tracking-tight
-              "
-            >
-              Projects
-              <span className="text-[#C9A27E]">
-                .
-              </span>
-            </h2>
+            <span
+              className={`
+                h-[1px]
+                bg-[#B8A1FF]
+                transition-all
+                duration-1000
+                ${
+                  visible
+                    ? "w-12"
+                    : "w-0"
+                }
+              `}
+            />
 
-            <p className="max-w-md text-sm leading-6 text-white/45">
-              A selection of applications I've built using modern
-              technologies and creative problem solving.
+            <p className="text-[11px] uppercase tracking-[0.4em] text-[#B8A1FF]">
+              Selected Work
             </p>
 
           </div>
+
+
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-light tracking-[-0.05em] leading-none">
+
+              Things I've
+              <br />
+
+              <span className="text-white/30">
+                built.
+              </span>
+
+            </h2>
+
+
+            <p className="max-w-md text-sm sm:text-base leading-7 text-white/45">
+
+              A collection of projects where I turn ideas into
+              functional, responsive and meaningful digital experiences.
+
+            </p>
+
+          </div>
+
         </div>
 
 
-        {/* =================================================
-            PROJECT GRID
-        ================================================= */}
+        {/* PROJECT GRID */}
 
-        <div
-          className="
-            grid
-            grid-cols-1
-            md:grid-cols-2
-            gap-8
-          "
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
 
-          {projects.map((project, index) => {
+          {projects.map((project, index) => (
 
-            const isRight = index === 1;
+            <article
+              key={project.number}
+              className={`
+                group
+                relative
+                overflow-hidden
+                rounded-[28px]
+                border
+                border-white/[0.07]
+                bg-white/[0.025]
+                transition-all
+                duration-1000
+                ease-[cubic-bezier(0.77,0,0.175,1)]
+                hover:-translate-y-2
+                hover:border-white/[0.14]
 
-            return (
-              <article
-                key={project.number}
+                ${
+                  visible
+                    ? "opacity-100 translate-x-0"
+                    : "opacity-0 -translate-x-24"
+                }
+              `}
+              style={{
+                transitionDelay: `${index * 180 + 200}ms`,
+              }}
+            >
+
+              {/* Glow */}
+
+              <div
                 className="
-                  group
-                  rounded-2xl
-                  border
-                  border-white/[0.08]
-                  bg-white/[0.025]
+                  absolute
+                  -top-32
+                  -right-32
+                  w-72
+                  h-72
+                  rounded-full
+                  blur-[100px]
+                  opacity-0
+                  group-hover:opacity-20
+                  transition-opacity
+                  duration-700
+                  pointer-events-none
+                "
+                style={{
+                  backgroundColor: project.accent,
+                }}
+              />
+
+
+              {/* VISUAL FRAME */}
+
+              <div
+                className="
+                  relative
+                  h-[330px]
+                  sm:h-[360px]
                   overflow-hidden
-                  transition-all
-                  duration-500
-                  hover:-translate-y-2
-                  hover:border-white/[0.15]
-                  hover:shadow-2xl
-                  hover:shadow-black/20
+                  border-b
+                  border-white/[0.07]
                 "
               >
 
-                {/* =================================================
-                    CINEMATIC PROJECT PREVIEW
-                ================================================= */}
-
-                <div className="relative h-80 sm:h-[360px] overflow-hidden">
-
-                  <div
-                    className={`
-                      absolute
-                      inset-0
-
-                      ${
-                        visible
-                          ? isRight
-                            ? "animate-[projectRevealRight_1.5s_cubic-bezier(0.76,0,0.24,1)_forwards]"
-                            : "animate-[projectRevealLeft_1.5s_cubic-bezier(0.76,0,0.24,1)_forwards]"
-                          : "opacity-0"
-                      }
-                    `}
-                    style={{
-                      animationDelay: visible
-                        ? `${index * 250}ms`
-                        : "0ms",
-                    }}
-                  >
-                    <ProjectPreview project={project} />
-                  </div>
-
-
-                  {/* Bottom Overlay */}
-
-                  <div
-                    className="
-                      absolute
-                      inset-x-0
-                      bottom-0
-                      h-24
-                      bg-gradient-to-t
-                      from-black/40
-                      to-transparent
-                      pointer-events-none
-                    "
-                  />
-
-                </div>
-
-
-                {/* =================================================
-                    PROJECT CONTENT
-                ================================================= */}
+                {/* Background */}
 
                 <div
-                  className={`
-                    p-6
-                    sm:p-7
-
-                    transition-all
+                  className="
+                    absolute
+                    inset-0
+                    transition-transform
                     duration-1000
-                    ease-out
-
-                    ${
-                      visible
-                        ? "opacity-100 translate-y-0"
-                        : "opacity-0 translate-y-8"
-                    }
-                  `}
+                    group-hover:scale-105
+                  "
                   style={{
-                    transitionDelay: visible
-                      ? `${index * 250 + 700}ms`
-                      : "0ms",
+                    background: `
+                      radial-gradient(
+                        circle at 30% 30%,
+                        ${project.accent}18,
+                        transparent 45%
+                      ),
+                      radial-gradient(
+                        circle at 80% 70%,
+                        ${project.accent}0c,
+                        transparent 40%
+                      ),
+                      #111014
+                    `,
                   }}
+                />
+
+
+                {/* Browser Frame */}
+
+                <div
+                  className="
+                    absolute
+                    inset-6
+                    rounded-2xl
+                    border
+                    border-white/[0.09]
+                    bg-[#0D0C0F]/95
+                    backdrop-blur-xl
+                    overflow-hidden
+                    shadow-2xl
+                    transition-all
+                    duration-700
+                    group-hover:-translate-y-2
+                  "
                 >
 
-                  {/* Title */}
+                  {/* Browser Top */}
 
-                  <div className="flex items-start justify-between gap-4">
+                  <div className="h-9 border-b border-white/[0.07] flex items-center px-4 gap-2">
 
-                    <div>
+                    <span className="w-2 h-2 rounded-full bg-white/15" />
+                    <span className="w-2 h-2 rounded-full bg-white/15" />
+                    <span className="w-2 h-2 rounded-full bg-white/15" />
 
-                      <p
-                        className="
-                          text-[10px]
-                          uppercase
-                          tracking-[0.25em]
-                          mb-2
-                        "
-                        style={{
-                          color: project.accent,
-                        }}
-                      >
-                        Project {project.number}
-                      </p>
-
-                      <h3
-                        className="
-                          text-2xl
-                          sm:text-[1.7rem]
-                          font-medium
-                          tracking-tight
-                        "
-                      >
-                        {project.title}
-                      </h3>
-
-                    </div>
-
-
-                    {/* GitHub */}
-
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`${project.title} GitHub`}
-                      className="
-                        flex-shrink-0
-                        w-10
-                        h-10
-                        rounded-full
-                        border
-                        border-white/10
-                        flex
-                        items-center
-                        justify-center
-                        text-white/50
-                        hover:text-[#0A090B]
-                        hover:bg-[#F5F1E8]
-                        hover:border-[#F5F1E8]
-                        transition-all
-                        duration-300
-                        hover:rotate-6
-                      "
-                    >
-                      ↗
-                    </a>
+                    <div className="ml-4 h-4 flex-1 rounded-full bg-white/[0.035]" />
 
                   </div>
 
 
-                  {/* Description */}
+                  {/* Creative Preview */}
 
-                  <p className="mt-4 text-sm leading-6 text-white/45">
-                    {project.description}
-                  </p>
+                  <div className="relative h-[calc(100%-36px)]">
 
-
-                  {/* Technologies */}
-
-                  <div className="flex flex-wrap gap-2 mt-6">
-
-                    {project.tech.map((item) => (
-                      <span
-                        key={item}
-                        className="
-                          px-3
-                          py-1.5
-                          rounded-full
-                          bg-white/[0.035]
-                          border
-                          border-white/[0.07]
-                          text-[11px]
-                          text-white/45
-                          transition-colors
-                          duration-300
-                          hover:text-white/70
-                        "
-                      >
-                        {item}
-                      </span>
-                    ))}
-
-                  </div>
-
-
-                  {/* Bottom */}
-
-                  <div
-                    className="
-                      mt-7
-                      pt-5
-                      border-t
-                      border-white/[0.07]
-                      flex
-                      items-center
-                      justify-between
-                    "
-                  >
-
-                    <span
-                      className="
-                        text-[10px]
-                        tracking-[0.2em]
-                        uppercase
-                        text-white/25
-                      "
-                    >
-                      Web Application
-                    </span>
-
-
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="
-                        text-xs
-                        text-white/50
-                        hover:text-[#C9A27E]
-                        transition-colors
-                      "
-                    >
-                      View GitHub →
-                    </a>
+                    <ProjectVisual project={project} />
 
                   </div>
 
                 </div>
 
-              </article>
-            );
-          })}
+
+                {/* Number */}
+
+                <span className="absolute top-7 right-8 text-[10px] tracking-[0.25em] text-white/25">
+                  {project.number}
+                </span>
+
+              </div>
+
+
+              {/* CONTENT */}
+
+              <div className="p-6 sm:p-7">
+
+                {/* Category */}
+
+                <div className="flex items-center gap-3 mb-4">
+
+                  <span
+                    className="w-2 h-2 rounded-full"
+                    style={{
+                      backgroundColor: project.accent,
+                      boxShadow: `0 0 15px ${project.accent}80`,
+                    }}
+                  />
+
+                  <span
+                    className="text-[10px] uppercase tracking-[0.3em]"
+                    style={{
+                      color: project.accent,
+                    }}
+                  >
+                    {project.category}
+                  </span>
+
+                </div>
+
+
+                {/* Title */}
+
+                <div className="flex items-start justify-between gap-4">
+
+                  <h3 className="text-2xl sm:text-3xl font-light tracking-tight">
+                    {project.title}
+                  </h3>
+
+
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`${project.title} GitHub`}
+                    className="
+                      flex
+                      items-center
+                      justify-center
+                      w-9
+                      h-9
+                      rounded-full
+                      border
+                      border-white/10
+                      text-white/45
+                      hover:text-[#0A090B]
+                      hover:bg-[#F5F1E8]
+                      hover:border-[#F5F1E8]
+                      transition-all
+                      duration-300
+                      flex-shrink-0
+                    "
+                  >
+                    <FaGithub className="text-sm" />
+                  </a>
+
+                </div>
+
+
+                {/* Description */}
+
+                <p className="mt-4 text-sm leading-6 text-white/45">
+                  {project.description}
+                </p>
+
+
+                {/* Tech */}
+
+                <div className="flex flex-wrap gap-2 mt-6">
+
+                  {project.tech.map((item) => (
+
+                    <span
+                      key={item}
+                      className="
+                        px-3
+                        py-1.5
+                        rounded-full
+                        border
+                        border-white/[0.08]
+                        bg-white/[0.025]
+                        text-[10px]
+                        text-white/45
+                        transition-all
+                        duration-300
+                        hover:bg-white/[0.06]
+                        hover:text-white/80
+                      "
+                    >
+                      {item}
+                    </span>
+
+                  ))}
+
+                </div>
+
+
+                {/* Bottom */}
+
+                <div className="mt-7 pt-5 border-t border-white/[0.07] flex items-center justify-between">
+
+                  <span className="text-[9px] uppercase tracking-[0.25em] text-white/20">
+                    Project {project.number}
+                  </span>
+
+
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="
+                      flex
+                      items-center
+                      gap-2
+                      text-xs
+                      text-white/45
+                      hover:text-white
+                      transition-colors
+                    "
+                  >
+                    View Project
+
+                    <FaArrowRight
+                      className="
+                        text-[9px]
+                        transition-transform
+                        duration-300
+                        group-hover:translate-x-1
+                      "
+                    />
+
+                  </a>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          ))}
 
         </div>
 
       </div>
 
 
-      {/* =================================================
-          BACKGROUND GLOW
-      ================================================= */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -bottom-40
-          left-1/2
-          -translate-x-1/2
-          w-[500px]
-          h-[300px]
-          rounded-full
-          bg-[#C9A27E]/5
-          blur-[130px]
-        "
-      />
-
-
-      {/* =================================================
-          CINEMATIC ANIMATIONS
-      ================================================= */}
+      {/* Animations */}
 
       <style>{`
 
-        /* LEFT → RIGHT REVEAL */
+        @keyframes projectFloat {
 
-        @keyframes projectRevealLeft {
-
-          0% {
-            clip-path: inset(0 100% 0 0);
-            transform: scale(1.12);
-            opacity: 0;
+          0%, 100% {
+            transform: translateY(0);
           }
 
-          35% {
-            opacity: 1;
-          }
-
-          70% {
-            transform: scale(1.035);
-          }
-
-          100% {
-            clip-path: inset(0 0 0 0);
-            transform: scale(1);
-            opacity: 1;
-          }
-
-        }
-
-
-        /* RIGHT → LEFT REVEAL */
-
-        @keyframes projectRevealRight {
-
-          0% {
-            clip-path: inset(0 0 0 100%);
-            transform: scale(1.12);
-            opacity: 0;
-          }
-
-          35% {
-            opacity: 1;
-          }
-
-          70% {
-            transform: scale(1.035);
-          }
-
-          100% {
-            clip-path: inset(0 0 0 0);
-            transform: scale(1);
-            opacity: 1;
+          50% {
+            transform: translateY(-10px);
           }
 
         }
