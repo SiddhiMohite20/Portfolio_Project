@@ -39,7 +39,6 @@ const skillGroups = [
       { name: "CSS", icon: <FaCss3Alt /> },
       { name: "JavaScript", icon: <FaJs /> },
       { name: "Java", icon: <FaJava /> },
-      { name: "Python", icon: <FaPython /> },
       { name: "SQL", icon: <DiDatabase /> },
     ],
   },
@@ -89,7 +88,6 @@ const skillGroups = [
     skills: [
       { name: "Git", icon: <FaGitAlt /> },
       { name: "GitHub", icon: <SiGithub /> },
-      { name: "Postman", icon: <SiPostman /> },
       { name: "Axios", icon: <SiAxios /> },
     ],
   },
@@ -105,6 +103,7 @@ const skillGroups = [
     ],
   },
 ];
+
 
 const Skills = () => {
   const sectionRef = useRef(null);
